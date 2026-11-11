@@ -1,0 +1,1017 @@
+{
+  "schema_version": "1.1",
+  "generated_at": "2026-11-11T00:00:00+00:00",
+  "local_date": "2026-11-11",
+  "data_mode": "simulation",
+  "source_note": "未配置远程数据源，使用每日确定性模拟数据。",
+  "simulation_notice": "点位坐标为用于平台验证的模拟位置，不代表官方监测站坐标。",
+  "stations": [
+    {
+      "id": "S03",
+      "name": "营口近岸监测站",
+      "category": "station",
+      "location": "营口市 · 辽河口外缘",
+      "lat": 40.606026,
+      "lng": 122.087898,
+      "is_simulated": true,
+      "status": "正常",
+      "planned_state": "normal",
+      "risk_score": 45,
+      "risk_level": "low",
+      "water_temp_c": 16.3,
+      "salinity_psu": 28.5,
+      "dissolved_oxygen_mg_l": 6.9,
+      "ph": 8.11,
+      "turbidity_ntu": 20.3,
+      "chlorophyll_a": 3.9,
+      "trend": {
+        "label": "近 24 小时上升",
+        "direction": "up",
+        "change": "+0.4"
+      },
+      "associated_events": [
+        "I-07"
+      ],
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "S07",
+      "name": "鲅鱼圈养殖区监测站",
+      "category": "station",
+      "location": "鲅鱼圈区 · 养殖示范区",
+      "lat": 40.225531,
+      "lng": 121.943136,
+      "is_simulated": true,
+      "status": "正常",
+      "planned_state": "attention",
+      "risk_score": 57,
+      "risk_level": "medium",
+      "water_temp_c": 16.7,
+      "salinity_psu": 28.2,
+      "dissolved_oxygen_mg_l": 6.2,
+      "ph": 8.01,
+      "turbidity_ntu": 24.1,
+      "chlorophyll_a": 4.4,
+      "trend": {
+        "label": "近 24 小时回落",
+        "direction": "down",
+        "change": "-0.2"
+      },
+      "associated_events": [
+        "I-02"
+      ],
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "S11",
+      "name": "双台子河口监测站",
+      "category": "station",
+      "location": "盘锦市 · 双台子河口",
+      "lat": 40.881811,
+      "lng": 121.723816,
+      "is_simulated": true,
+      "status": "关注",
+      "planned_state": "abnormal",
+      "risk_score": 81,
+      "risk_level": "high",
+      "water_temp_c": 17.1,
+      "salinity_psu": 26.2,
+      "dissolved_oxygen_mg_l": 5.5,
+      "ph": 8.08,
+      "turbidity_ntu": 36.7,
+      "chlorophyll_a": 8.9,
+      "trend": {
+        "label": "近 24 小时回落",
+        "direction": "down",
+        "change": "-0.6"
+      },
+      "associated_events": [
+        "I-03"
+      ],
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "S15",
+      "name": "辽东湾保护区监测站",
+      "category": "station",
+      "location": "斑海豹保护区 · 西部海域",
+      "lat": 40.585677,
+      "lng": 121.36123,
+      "is_simulated": true,
+      "status": "高风险",
+      "planned_state": "attention",
+      "risk_score": 68,
+      "risk_level": "medium",
+      "water_temp_c": 17.7,
+      "salinity_psu": 28.2,
+      "dissolved_oxygen_mg_l": 6.6,
+      "ph": 8.19,
+      "turbidity_ntu": 20.4,
+      "chlorophyll_a": 9.7,
+      "trend": {
+        "label": "近 24 小时回落",
+        "direction": "down",
+        "change": "-0.2"
+      },
+      "associated_events": [
+        "I-04"
+      ],
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "S21",
+      "name": "营口港近岸监测站",
+      "category": "station",
+      "location": "营口港 · 港区西侧",
+      "lat": 40.3153,
+      "lng": 122.069237,
+      "is_simulated": true,
+      "status": "关注",
+      "planned_state": "high",
+      "risk_score": 71,
+      "risk_level": "medium",
+      "water_temp_c": 18.2,
+      "salinity_psu": 28.5,
+      "dissolved_oxygen_mg_l": 5.2,
+      "ph": 8.12,
+      "turbidity_ntu": 9.6,
+      "chlorophyll_a": 6.0,
+      "trend": {
+        "label": "近 24 小时上升",
+        "direction": "up",
+        "change": "+0.4"
+      },
+      "associated_events": [
+        "I-01",
+        "I-11"
+      ],
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "S24",
+      "name": "锦州南部海域监测站",
+      "category": "station",
+      "location": "锦州市 · 南部近岸",
+      "lat": 40.384512,
+      "lng": 121.192981,
+      "is_simulated": true,
+      "status": "正常",
+      "planned_state": "normal",
+      "risk_score": 41,
+      "risk_level": "low",
+      "water_temp_c": 18.8,
+      "salinity_psu": 28.9,
+      "dissolved_oxygen_mg_l": 7.0,
+      "ph": 8.18,
+      "turbidity_ntu": 16.7,
+      "chlorophyll_a": 4.8,
+      "trend": {
+        "label": "近 24 小时上升",
+        "direction": "up",
+        "change": "+0.6"
+      },
+      "associated_events": [
+        "I-08"
+      ],
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "S30",
+      "name": "辽河口监测站",
+      "category": "station",
+      "location": "盘锦市 · 辽河口南支",
+      "lat": 40.79346,
+      "lng": 121.993599,
+      "is_simulated": true,
+      "status": "正常",
+      "planned_state": "attention",
+      "risk_score": 43,
+      "risk_level": "low",
+      "water_temp_c": 19.4,
+      "salinity_psu": 27.5,
+      "dissolved_oxygen_mg_l": 6.7,
+      "ph": 8.04,
+      "turbidity_ntu": 33.1,
+      "chlorophyll_a": 3.9,
+      "trend": {
+        "label": "近 24 小时上升",
+        "direction": "up",
+        "change": "+0.0"
+      },
+      "associated_events": [
+        "I-07",
+        "I-12"
+      ],
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "S34",
+      "name": "辽东湾中部监测站",
+      "category": "station",
+      "location": "辽东湾 · 中部公共海域",
+      "lat": 40.384765,
+      "lng": 121.671505,
+      "is_simulated": true,
+      "status": "正常",
+      "planned_state": "normal",
+      "risk_score": 48,
+      "risk_level": "low",
+      "water_temp_c": 19.8,
+      "salinity_psu": 29.9,
+      "dissolved_oxygen_mg_l": 6.4,
+      "ph": 8.07,
+      "turbidity_ntu": 18.0,
+      "chlorophyll_a": 4.1,
+      "trend": {
+        "label": "近 24 小时回落",
+        "direction": "down",
+        "change": "-0.5"
+      },
+      "associated_events": [],
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "S38",
+      "name": "金州湾北部监测站",
+      "category": "station",
+      "location": "大连市 · 金州湾北部",
+      "lat": 39.335099,
+      "lng": 121.683509,
+      "is_simulated": true,
+      "status": "正常",
+      "planned_state": "normal",
+      "risk_score": 50,
+      "risk_level": "low",
+      "water_temp_c": 20.9,
+      "salinity_psu": 30.2,
+      "dissolved_oxygen_mg_l": 6.4,
+      "ph": 8.06,
+      "turbidity_ntu": 20.8,
+      "chlorophyll_a": 5.2,
+      "trend": {
+        "label": "近 24 小时回落",
+        "direction": "down",
+        "change": "-0.4"
+      },
+      "associated_events": [
+        "I-06"
+      ],
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "S42",
+      "name": "红海滩监测站",
+      "category": "station",
+      "location": "盘锦市 · 红海滩南段",
+      "lat": 40.683093,
+      "lng": 121.577139,
+      "is_simulated": true,
+      "status": "正常",
+      "planned_state": "normal",
+      "risk_score": 51,
+      "risk_level": "low",
+      "water_temp_c": 20.3,
+      "salinity_psu": 30.5,
+      "dissolved_oxygen_mg_l": 6.8,
+      "ph": 7.97,
+      "turbidity_ntu": 16.2,
+      "chlorophyll_a": 6.2,
+      "trend": {
+        "label": "近 24 小时上升",
+        "direction": "up",
+        "change": "+0.2"
+      },
+      "associated_events": [
+        "I-09"
+      ],
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "S45",
+      "name": "绥中近岸监测站",
+      "category": "station",
+      "location": "葫芦岛市 · 绥中近岸",
+      "lat": 40.073588,
+      "lng": 120.182463,
+      "is_simulated": true,
+      "status": "正常",
+      "planned_state": "normal",
+      "risk_score": 46,
+      "risk_level": "low",
+      "water_temp_c": 20.3,
+      "salinity_psu": 30.5,
+      "dissolved_oxygen_mg_l": 7.0,
+      "ph": 8.12,
+      "turbidity_ntu": 23.5,
+      "chlorophyll_a": 6.2,
+      "trend": {
+        "label": "近 24 小时上升",
+        "direction": "up",
+        "change": "+0.6"
+      },
+      "associated_events": [],
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "S48",
+      "name": "兴城海滨监测站",
+      "category": "station",
+      "location": "葫芦岛市 · 兴城海滨",
+      "lat": 40.594275,
+      "lng": 120.753365,
+      "is_simulated": true,
+      "status": "正常",
+      "planned_state": "normal",
+      "risk_score": 48,
+      "risk_level": "low",
+      "water_temp_c": 20.1,
+      "salinity_psu": 30.3,
+      "dissolved_oxygen_mg_l": 6.9,
+      "ph": 8.18,
+      "turbidity_ntu": 20.7,
+      "chlorophyll_a": 5.2,
+      "trend": {
+        "label": "近 24 小时上升",
+        "direction": "up",
+        "change": "+0.3"
+      },
+      "associated_events": [],
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "S51",
+      "name": "长兴岛监测站",
+      "category": "station",
+      "location": "大连市 · 长兴岛西岸",
+      "lat": 39.602977,
+      "lng": 121.253085,
+      "is_simulated": true,
+      "status": "正常",
+      "planned_state": "attention",
+      "risk_score": 52,
+      "risk_level": "low",
+      "water_temp_c": 20.6,
+      "salinity_psu": 30.0,
+      "dissolved_oxygen_mg_l": 6.5,
+      "ph": 8.14,
+      "turbidity_ntu": 21.2,
+      "chlorophyll_a": 4.1,
+      "trend": {
+        "label": "近 24 小时回落",
+        "direction": "down",
+        "change": "-0.4"
+      },
+      "associated_events": [],
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "S54",
+      "name": "仙人岛监测站",
+      "category": "station",
+      "location": "营口市 · 仙人岛南侧",
+      "lat": 40.026856,
+      "lng": 122.144857,
+      "is_simulated": true,
+      "status": "正常",
+      "planned_state": "normal",
+      "risk_score": 55,
+      "risk_level": "medium",
+      "water_temp_c": 19.4,
+      "salinity_psu": 29.5,
+      "dissolved_oxygen_mg_l": 6.4,
+      "ph": 7.98,
+      "turbidity_ntu": 24.2,
+      "chlorophyll_a": 3.9,
+      "trend": {
+        "label": "近 24 小时回落",
+        "direction": "down",
+        "change": "-0.6"
+      },
+      "associated_events": [
+        "I-05"
+      ],
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    }
+  ],
+  "risks": [
+    {
+      "id": "R-01",
+      "name": "营口港近岸油污风险区",
+      "category": "risk",
+      "risk_type": "oil",
+      "level": "high",
+      "score": 86,
+      "lat": 40.33,
+      "lng": 122.05,
+      "radius_m": 16000,
+      "abnormal_indicator": "溶解氧 4.1 mg/L、石油类异常",
+      "cause": "港区船舶活动密集，低溶解氧与油膜事件叠加",
+      "recommendation": "优先巡查锚地与靠泊船舶，布设围油栏并开展定点采样。",
+      "is_simulated": true,
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "R-02",
+      "name": "双台子河口水质异常风险区",
+      "category": "risk",
+      "risk_type": "water",
+      "level": "high",
+      "score": 79,
+      "lat": 40.87,
+      "lng": 121.73,
+      "radius_m": 13500,
+      "abnormal_indicator": "叶绿素 a 9.6 μg/L、溶解氧偏低",
+      "cause": "上游径流、营养盐输入和河口低流速共同作用",
+      "recommendation": "启动加密监测，核查入河排口并同步采集藻类样本。",
+      "is_simulated": true,
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "R-03",
+      "name": "斑海豹保护区赤潮关注区",
+      "category": "risk",
+      "risk_type": "redtide",
+      "level": "medium",
+      "score": 64,
+      "lat": 40.6,
+      "lng": 121.39,
+      "radius_m": 12500,
+      "abnormal_indicator": "叶绿素 a 8.2 μg/L、藻密度上升",
+      "cause": "水温升高及近岸水体交换减弱",
+      "recommendation": "保护区巡护艇每日巡查，持续跟踪叶绿素和藻细胞密度。",
+      "is_simulated": true,
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "R-04",
+      "name": "鲅鱼圈养殖区低氧关注区",
+      "category": "risk",
+      "risk_type": "water",
+      "level": "medium",
+      "score": 57,
+      "lat": 40.23,
+      "lng": 121.94,
+      "radius_m": 10500,
+      "abnormal_indicator": "溶解氧 5.2 mg/L、盐度波动",
+      "cause": "养殖密度较高且潮汐交换条件一般",
+      "recommendation": "通知养殖主体加强增氧与投饵管理，安排夜间复测。",
+      "is_simulated": true,
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "R-05",
+      "name": "锦州南部藻类关注区",
+      "category": "risk",
+      "risk_type": "redtide",
+      "level": "medium",
+      "score": 44,
+      "lat": 40.37,
+      "lng": 121.18,
+      "radius_m": 9000,
+      "abnormal_indicator": "藻细胞 3.8×10⁵/L",
+      "cause": "近岸水温阶段性偏高，营养盐比例变化",
+      "recommendation": "开展浮游植物网采，结合卫星水色遥感扩大研判范围。",
+      "is_simulated": true,
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    },
+    {
+      "id": "R-06",
+      "name": "金州湾浊度波动区",
+      "category": "risk",
+      "risk_type": "water",
+      "level": "low",
+      "score": 31,
+      "lat": 39.34,
+      "lng": 121.7,
+      "radius_m": 8500,
+      "abnormal_indicator": "浊度 36 NTU",
+      "cause": "近岸施工及短时风浪扰动",
+      "recommendation": "保持常规监测，关注连续降雨及施工排水时段。",
+      "is_simulated": true,
+      "updated_at": "2026-11-11T00:00:00+00:00"
+    }
+  ],
+  "ports": [
+    {
+      "id": "P-01",
+      "name": "营口港鲅鱼圈港区",
+      "category": "port",
+      "operator": "营口港",
+      "lat": 40.29,
+      "lng": 122.1,
+      "attributes": {
+        "泊位数": "36",
+        "监管级别": "重点",
+        "通航状态": "正常"
+      },
+      "related_station_ids": [
+        "S07",
+        "S21"
+      ],
+      "recent_risk": 86,
+      "issue_count": 8,
+      "is_simulated": true
+    },
+    {
+      "id": "P-02",
+      "name": "营口港仙人岛港区",
+      "category": "port",
+      "operator": "营口港",
+      "lat": 40.02,
+      "lng": 122.12,
+      "attributes": {
+        "泊位数": "12",
+        "监管级别": "重点",
+        "通航状态": "正常"
+      },
+      "related_station_ids": [
+        "S54"
+      ],
+      "recent_risk": 42,
+      "issue_count": 3,
+      "is_simulated": true
+    },
+    {
+      "id": "P-03",
+      "name": "锦州港主港区",
+      "category": "port",
+      "operator": "锦州港",
+      "lat": 40.48,
+      "lng": 121.06,
+      "attributes": {
+        "泊位数": "24",
+        "监管级别": "重点",
+        "通航状态": "正常"
+      },
+      "related_station_ids": [
+        "S24"
+      ],
+      "recent_risk": 58,
+      "issue_count": 5,
+      "is_simulated": true
+    },
+    {
+      "id": "P-04",
+      "name": "盘锦港荣兴港区",
+      "category": "port",
+      "operator": "盘锦港",
+      "lat": 40.73,
+      "lng": 121.93,
+      "attributes": {
+        "泊位数": "16",
+        "监管级别": "一般",
+        "通航状态": "正常"
+      },
+      "related_station_ids": [
+        "S11",
+        "S30"
+      ],
+      "recent_risk": 47,
+      "issue_count": 4,
+      "is_simulated": true
+    },
+    {
+      "id": "P-05",
+      "name": "绥中港区",
+      "category": "port",
+      "operator": "绥中港",
+      "lat": 40.09,
+      "lng": 120.16,
+      "attributes": {
+        "泊位数": "9",
+        "监管级别": "一般",
+        "通航状态": "正常"
+      },
+      "related_station_ids": [
+        "S45"
+      ],
+      "recent_risk": 24,
+      "issue_count": 1,
+      "is_simulated": true
+    },
+    {
+      "id": "P-06",
+      "name": "葫芦岛港柳条沟港区",
+      "category": "port",
+      "operator": "葫芦岛港",
+      "lat": 40.71,
+      "lng": 120.92,
+      "attributes": {
+        "泊位数": "14",
+        "监管级别": "一般",
+        "通航状态": "正常"
+      },
+      "related_station_ids": [
+        "S48"
+      ],
+      "recent_risk": 19,
+      "issue_count": 2,
+      "is_simulated": true
+    }
+  ],
+  "protected_areas": [
+    {
+      "id": "Z-01",
+      "name": "辽东湾斑海豹国家级自然保护区",
+      "category": "protected_area",
+      "area_type": "国家级自然保护区",
+      "lat": 40.6,
+      "lng": 121.4,
+      "radius_deg": 0.25,
+      "attributes": {
+        "主要保护对象": "斑海豹及其栖息地",
+        "核心区": "约512 km²",
+        "巡护频次": "每日"
+      },
+      "related_station_ids": [
+        "S15"
+      ],
+      "recent_risk": 64,
+      "issue_count": 4,
+      "is_simulated": true
+    },
+    {
+      "id": "Z-02",
+      "name": "红海滩国家级自然保护区",
+      "category": "protected_area",
+      "area_type": "滨海湿地保护区",
+      "lat": 40.75,
+      "lng": 121.61,
+      "radius_deg": 0.16,
+      "attributes": {
+        "主要保护对象": "滨海湿地生态系统",
+        "核心区": "约120 km²",
+        "巡护频次": "每日"
+      },
+      "related_station_ids": [
+        "S11",
+        "S42"
+      ],
+      "recent_risk": 52,
+      "issue_count": 3,
+      "is_simulated": true
+    },
+    {
+      "id": "Z-03",
+      "name": "团山子国家海洋公园",
+      "category": "protected_area",
+      "area_type": "国家级海洋公园",
+      "lat": 40.01,
+      "lng": 120.76,
+      "radius_deg": 0.12,
+      "attributes": {
+        "主要保护对象": "海蚀地貌与近岸生态",
+        "核心区": "约23 km²",
+        "巡护频次": "每周"
+      },
+      "related_station_ids": [
+        "S45"
+      ],
+      "recent_risk": 28,
+      "issue_count": 2,
+      "is_simulated": true
+    }
+  ],
+  "aquaculture_zones": [
+    {
+      "id": "A-01",
+      "name": "鲅鱼圈水产养殖示范区",
+      "category": "aquaculture_zone",
+      "area_type": "海水养殖",
+      "lat": 40.22,
+      "lng": 121.9,
+      "radius_deg": 0.11,
+      "attributes": {
+        "主要品种": "海参、贝类",
+        "养殖面积": "约38 km²",
+        "监管状态": "重点监测"
+      },
+      "related_station_ids": [
+        "S07"
+      ],
+      "recent_risk": 57,
+      "issue_count": 2,
+      "is_simulated": true
+    },
+    {
+      "id": "A-02",
+      "name": "仙人岛海水养殖区",
+      "category": "aquaculture_zone",
+      "area_type": "海水养殖",
+      "lat": 40.04,
+      "lng": 122.08,
+      "radius_deg": 0.09,
+      "attributes": {
+        "主要品种": "鱼类、贝类",
+        "养殖面积": "约22 km²",
+        "监管状态": "常规监测"
+      },
+      "related_station_ids": [
+        "S54"
+      ],
+      "recent_risk": 35,
+      "issue_count": 1,
+      "is_simulated": true
+    },
+    {
+      "id": "A-03",
+      "name": "金州湾北部养殖区",
+      "category": "aquaculture_zone",
+      "area_type": "海水养殖",
+      "lat": 39.35,
+      "lng": 121.72,
+      "radius_deg": 0.08,
+      "attributes": {
+        "主要品种": "海参、扇贝",
+        "养殖面积": "约18 km²",
+        "监管状态": "常规监测"
+      },
+      "related_station_ids": [
+        "S38"
+      ],
+      "recent_risk": 31,
+      "issue_count": 2,
+      "is_simulated": true
+    },
+    {
+      "id": "A-04",
+      "name": "兴城近岸养殖区",
+      "category": "aquaculture_zone",
+      "area_type": "海水养殖",
+      "lat": 40.56,
+      "lng": 120.79,
+      "radius_deg": 0.07,
+      "attributes": {
+        "主要品种": "贝类、鱼类",
+        "养殖面积": "约13 km²",
+        "监管状态": "常规监测"
+      },
+      "related_station_ids": [
+        "S48"
+      ],
+      "recent_risk": 22,
+      "issue_count": 1,
+      "is_simulated": true
+    }
+  ],
+  "issues": [
+    {
+      "id": "I-01",
+      "name": "营口港3号锚地油膜异常",
+      "category": "issue",
+      "issue_type": "oil",
+      "severity": "high",
+      "status": "pending_review",
+      "status_label": "待审核",
+      "lat": 40.33,
+      "lng": 122.02,
+      "location": "营口港3号锚地东侧约800米",
+      "location_name": "营口港3号锚地东侧约800米",
+      "source": "巡护上报",
+      "reporter": "王海巡",
+      "team": "营口港巡护中队",
+      "created_at": "2026-11-10T23:42:00+00:00",
+      "progress": "待审核",
+      "is_simulated": true,
+      "images": [],
+      "description": "营口港3号锚地东侧约800米发现营口港3号锚地油膜异常，已进入平台处置流程，等待责任单位跟进并反馈现场结果。"
+    },
+    {
+      "id": "I-02",
+      "name": "月亮湖东侧岸线垃圾聚集",
+      "category": "issue",
+      "issue_type": "trash",
+      "severity": "medium",
+      "status": "pending_dispatch",
+      "status_label": "待分派",
+      "lat": 40.23,
+      "lng": 122.06,
+      "location": "鲅鱼圈区月亮湖公园东侧300米海岸",
+      "location_name": "鲅鱼圈区月亮湖公园东侧300米海岸",
+      "source": "公众上报",
+      "reporter": "李女士",
+      "team": "鲅鱼圈岸线保洁队",
+      "created_at": "2026-11-10T23:08:00+00:00",
+      "progress": "待分派",
+      "is_simulated": true,
+      "images": [],
+      "description": "鲅鱼圈区月亮湖公园东侧300米海岸发现月亮湖东侧岸线垃圾聚集，已进入平台处置流程，等待责任单位跟进并反馈现场结果。"
+    },
+    {
+      "id": "I-03",
+      "name": "双台子河口溶解氧持续偏低",
+      "category": "issue",
+      "issue_type": "water",
+      "severity": "high",
+      "status": "processing",
+      "status_label": "处理中",
+      "lat": 40.88,
+      "lng": 121.73,
+      "location": "双台子河口南侧监测断面",
+      "location_name": "双台子河口南侧监测断面",
+      "source": "系统预警",
+      "reporter": "环境监测中心",
+      "team": "盘锦水质应急组",
+      "created_at": "2026-11-10T22:37:00+00:00",
+      "progress": "处理中",
+      "is_simulated": true,
+      "images": [],
+      "description": "双台子河口南侧监测断面发现双台子河口溶解氧持续偏低，已进入平台处置流程，等待责任单位跟进并反馈现场结果。"
+    },
+    {
+      "id": "I-04",
+      "name": "保护区表层水体变色",
+      "category": "issue",
+      "issue_type": "redtide",
+      "severity": "medium",
+      "status": "pending_verification",
+      "status_label": "待复核",
+      "lat": 40.61,
+      "lng": 121.37,
+      "location": "辽东湾斑海豹保护区西侧",
+      "location_name": "辽东湾斑海豹保护区西侧",
+      "source": "联合巡查",
+      "reporter": "陈研究员",
+      "team": "海洋生态监测站",
+      "created_at": "2026-11-10T21:50:00+00:00",
+      "progress": "待复核",
+      "is_simulated": true,
+      "images": [],
+      "description": "辽东湾斑海豹保护区西侧发现保护区表层水体变色，已进入平台处置流程，等待责任单位跟进并反馈现场结果。"
+    },
+    {
+      "id": "I-05",
+      "name": "仙人岛码头废弃渔网缠绕",
+      "category": "issue",
+      "issue_type": "trash",
+      "severity": "low",
+      "status": "archived",
+      "status_label": "已归档",
+      "lat": 40.02,
+      "lng": 122.13,
+      "location": "仙人岛码头东南侧礁石区",
+      "location_name": "仙人岛码头东南侧礁石区",
+      "source": "公众上报",
+      "reporter": "赵先生",
+      "team": "仙人岛岸线管护队",
+      "created_at": "2026-11-10T21:02:00+00:00",
+      "progress": "已归档",
+      "is_simulated": true,
+      "images": [],
+      "description": "仙人岛码头东南侧礁石区发现仙人岛码头废弃渔网缠绕，已进入平台处置流程，等待责任单位跟进并反馈现场结果。"
+    },
+    {
+      "id": "I-06",
+      "name": "金州湾岸线塑料垃圾",
+      "category": "issue",
+      "issue_type": "trash",
+      "severity": "low",
+      "status": "processing",
+      "status_label": "处理中",
+      "lat": 39.34,
+      "lng": 121.7,
+      "location": "金州湾滨海步道北段",
+      "location_name": "金州湾滨海步道北段",
+      "source": "公众上报",
+      "reporter": "周女士",
+      "team": "金州湾保洁队",
+      "created_at": "2026-11-10T20:39:00+00:00",
+      "progress": "处理中",
+      "is_simulated": true,
+      "images": [],
+      "description": "金州湾滨海步道北段发现金州湾岸线塑料垃圾，已进入平台处置流程，等待责任单位跟进并反馈现场结果。"
+    },
+    {
+      "id": "I-07",
+      "name": "辽东湾北部海水异味",
+      "category": "issue",
+      "issue_type": "water",
+      "severity": "medium",
+      "status": "pending_review",
+      "status_label": "待审核",
+      "lat": 40.72,
+      "lng": 122.0,
+      "location": "营口市辽河口西岸",
+      "location_name": "营口市辽河口西岸",
+      "source": "渔民上报",
+      "reporter": "附近渔民",
+      "team": "待确定",
+      "created_at": "2026-11-10T19:55:00+00:00",
+      "progress": "待审核",
+      "is_simulated": true,
+      "images": [],
+      "description": "营口市辽河口西岸发现辽东湾北部海水异味，已进入平台处置流程，等待责任单位跟进并反馈现场结果。"
+    },
+    {
+      "id": "I-08",
+      "name": "锦州港西侧浮油带",
+      "category": "issue",
+      "issue_type": "oil",
+      "severity": "high",
+      "status": "pending_dispatch",
+      "status_label": "待分派",
+      "lat": 40.45,
+      "lng": 121.03,
+      "location": "锦州港西侧航道边缘",
+      "location_name": "锦州港西侧航道边缘",
+      "source": "设备发现",
+      "reporter": "无人机巡检",
+      "team": "锦州港应急中队",
+      "created_at": "2026-11-10T19:07:00+00:00",
+      "progress": "待分派",
+      "is_simulated": true,
+      "images": [],
+      "description": "锦州港西侧航道边缘发现锦州港西侧浮油带，已进入平台处置流程，等待责任单位跟进并反馈现场结果。"
+    },
+    {
+      "id": "I-09",
+      "name": "红海滩景区岸线饮料瓶",
+      "category": "issue",
+      "issue_type": "trash",
+      "severity": "low",
+      "status": "archived",
+      "status_label": "已归档",
+      "lat": 40.69,
+      "lng": 121.58,
+      "location": "红海滩国家风景廊道南段",
+      "location_name": "红海滩国家风景廊道南段",
+      "source": "公众上报",
+      "reporter": "赵先生",
+      "team": "红海滩景区管护队",
+      "created_at": "2026-11-10T15:20:00+00:00",
+      "progress": "已归档",
+      "is_simulated": true,
+      "images": [],
+      "description": "红海滩国家风景廊道南段发现红海滩景区岸线饮料瓶，已进入平台处置流程，等待责任单位跟进并反馈现场结果。"
+    },
+    {
+      "id": "I-10",
+      "name": "小凌河口漂浮物聚集",
+      "category": "issue",
+      "issue_type": "other",
+      "severity": "low",
+      "status": "archived",
+      "status_label": "已归档",
+      "lat": 40.82,
+      "lng": 121.0,
+      "location": "小凌河入海口南侧",
+      "location_name": "小凌河入海口南侧",
+      "source": "巡护上报",
+      "reporter": "环卫巡护",
+      "team": "凌海河道管护队",
+      "created_at": "2026-11-10T12:00:00+00:00",
+      "progress": "已归档",
+      "is_simulated": true,
+      "images": [],
+      "description": "小凌河入海口南侧发现小凌河口漂浮物聚集，已进入平台处置流程，等待责任单位跟进并反馈现场结果。"
+    },
+    {
+      "id": "I-11",
+      "name": "鲅鱼圈港池零星油花",
+      "category": "issue",
+      "issue_type": "oil",
+      "severity": "medium",
+      "status": "processing",
+      "status_label": "处理中",
+      "lat": 40.29,
+      "lng": 122.1,
+      "location": "鲅鱼圈港区6号泊位",
+      "location_name": "鲅鱼圈港区6号泊位",
+      "source": "巡护上报",
+      "reporter": "港区巡检员",
+      "team": "鲅鱼圈港区应急组",
+      "created_at": "2026-11-10T05:40:00+00:00",
+      "progress": "处理中",
+      "is_simulated": true,
+      "images": [],
+      "description": "鲅鱼圈港区6号泊位发现鲅鱼圈港池零星油花，已进入平台处置流程，等待责任单位跟进并反馈现场结果。"
+    },
+    {
+      "id": "I-12",
+      "name": "辽河口S30浊度异常",
+      "category": "issue",
+      "issue_type": "water",
+      "severity": "medium",
+      "status": "processing",
+      "status_label": "处理中",
+      "lat": 40.79,
+      "lng": 121.99,
+      "location": "辽河口S30监测站",
+      "location_name": "辽河口S30监测站",
+      "source": "系统预警",
+      "reporter": "环境监测中心",
+      "team": "盘锦水质监测组",
+      "created_at": "2026-11-09T22:00:00+00:00",
+      "progress": "处理中",
+      "is_simulated": true,
+      "images": [],
+      "description": "辽河口S30监测站发现辽河口S30浊度异常，已进入平台处置流程，等待责任单位跟进并反馈现场结果。"
+    }
+  ],
+  "metadata": {
+    "network_station_total": 42,
+    "displayed_station_count": 14,
+    "remote_station_count": 0,
+    "simulated_station_count": 14
+  }
+}

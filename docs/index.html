@@ -1,0 +1,913 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23071a33'/%3E%3Cpath d='M5 21c4-5 7-5 11 0s7 5 11 0M5 15c4-5 7-5 11 0s7 5 11 0' fill='none' stroke='%235ce1d5' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#06132a">
+  <meta name="description" content="辽东湾近岸海域智慧生态巡护与污染风险预警平台">
+  <title>辽东湾智慧生态巡护平台</title>
+  <link rel="stylesheet" href="./vendor/leaflet/leaflet.css">
+  <link rel="stylesheet" href="./assets/styles.css">
+</head>
+<body>
+  <svg class="svg-sprite" aria-hidden="true">
+    <symbol id="i-wave" viewBox="0 0 24 24">
+      <path d="M3 7.5c3.3 0 3.3 2 6.5 2s3.2-2 6.5-2 3.2 2 5 2M3 12.5c3.3 0 3.3 2 6.5 2s3.2-2 6.5-2 3.2 2 5 2M3 17.5c3.3 0 3.3 2 6.5 2s3.2-2 6.5-2 3.2 2 5 2"/>
+    </symbol>
+    <symbol id="i-map" viewBox="0 0 24 24">
+      <path d="m3 6 6-3 6 3 6-3v15l-6 3-6-3-6 3V6Z"/><path d="M9 3v15M15 6v15"/>
+    </symbol>
+    <symbol id="i-risk" viewBox="0 0 24 24">
+      <path d="M12 3 2.8 19a1.5 1.5 0 0 0 1.3 2h15.8a1.5 1.5 0 0 0 1.3-2L12 3Z"/><path d="M12 9v4M12 17h.01"/>
+    </symbol>
+    <symbol id="i-report" viewBox="0 0 24 24">
+      <path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 14v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-5"/>
+    </symbol>
+    <symbol id="i-events" viewBox="0 0 24 24">
+      <rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/>
+    </symbol>
+    <symbol id="i-analytics" viewBox="0 0 24 24">
+      <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>
+    </symbol>
+    <symbol id="i-search" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>
+    </symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24">
+      <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>
+    </symbol>
+    <symbol id="i-chevron-down" viewBox="0 0 24 24">
+      <path d="m7 9 5 5 5-5"/>
+    </symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24">
+      <path d="m9 18 6-6-6-6"/>
+    </symbol>
+    <symbol id="i-filter" viewBox="0 0 24 24">
+      <path d="M4 5h16l-6 7v6l-4 2v-8L4 5Z"/>
+    </symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24">
+      <path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5"/>
+    </symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24">
+      <path d="M12 5v14M5 12h14"/>
+    </symbol>
+    <symbol id="i-locate" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/>
+    </symbol>
+    <symbol id="i-thermo" viewBox="0 0 24 24">
+      <path d="M10 14.8V5a2 2 0 0 1 4 0v9.8a4 4 0 1 1-4 0Z"/><path d="M12 8v8"/>
+    </symbol>
+    <symbol id="i-droplet" viewBox="0 0 24 24">
+      <path d="M12 2s7 7.2 7 13a7 7 0 0 1-14 0c0-5.8 7-13 7-13Z"/>
+    </symbol>
+    <symbol id="i-activity" viewBox="0 0 24 24">
+      <path d="M3 12h4l2-6 4 12 2-6h6"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+    </symbol>
+    <symbol id="i-users" viewBox="0 0 24 24">
+      <circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0M16 5a3 3 0 0 1 0 6M18 14a5 5 0 0 1 3 4"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="m5 12 4 4L19 6"/>
+    </symbol>
+    <symbol id="i-check-circle" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/>
+    </symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24">
+      <path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 15v5h16v-5"/>
+    </symbol>
+    <symbol id="i-image" viewBox="0 0 24 24">
+      <rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="2"/><path d="m21 15-5-5L5 20"/>
+    </symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24">
+      <path d="M4 7h4l2-3h4l2 3h4a1 1 0 0 1 1 1v11H3V8a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="4"/>
+    </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24">
+      <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>
+    </symbol>
+    <symbol id="i-download" viewBox="0 0 24 24">
+      <path d="M12 3v12M7 10l5 5 5-5M4 20h16"/>
+    </symbol>
+    <symbol id="i-more" viewBox="0 0 24 24">
+      <circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24">
+      <path d="m6 6 12 12M18 6 6 18"/>
+    </symbol>
+    <symbol id="i-send" viewBox="0 0 24 24">
+      <path d="m22 2-7 20-4-9-9-4 20-7Z"/><path d="M22 2 11 13"/>
+    </symbol>
+    <symbol id="i-file" viewBox="0 0 24 24">
+      <path d="M6 2h8l5 5v15H6V2Z"/><path d="M14 2v6h5M9 13h7M9 17h7"/>
+    </symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24">
+      <path d="M20 7v5h-5M4 17v-5h5"/><path d="M6.1 8a8 8 0 0 1 13 1L20 12M4 12l.9 3a8 8 0 0 0 13 1"/>
+    </symbol>
+    <symbol id="i-eye" viewBox="0 0 24 24">
+      <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/>
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/>
+    </symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24">
+      <path d="M4 6h16M4 12h16M4 18h16"/>
+    </symbol>
+    <symbol id="i-building" viewBox="0 0 24 24">
+      <path d="M3 21h18M5 21V5l7-3v19M12 8h7v13M8 7v2M8 11v2M8 15v2M16 12h.01M16 16h.01"/>
+    </symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-5"/>
+    </symbol>
+    <symbol id="i-nav" viewBox="0 0 24 24">
+      <path d="m3 11 18-8-8 18-2-8-8-2Z"/>
+    </symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24">
+      <path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/>
+    </symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24">
+      <path d="M6 18h11a4 4 0 0 0 .5-8A6 6 0 0 0 6 11a3.5 3.5 0 0 0 0 7Z"/>
+    </symbol>
+  </svg>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M8 15c7 0 7 5 14 5s7-5 14-5 7 5 9 5" />
+            <path d="M6 24c7 0 7 5 14 5s7-5 14-5 7 5 9 5" />
+            <path d="M10 33c6 0 6 4 12 4s6-4 12-4 6 4 9 4" />
+          </svg>
+        </div>
+        <div class="brand-copy">
+          <strong>潮汐智护</strong>
+          <span>LIAODONG BAY ECO-GUARD</span>
+        </div>
+      </div>
+
+      <div class="project-badge">
+        <span class="project-badge-dot"></span>
+        <div>
+          <b>辽东湾智慧生态巡护平台</b>
+          <small>全域协同 · 实时监测</small>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="主导航">
+        <p class="nav-label">生态态势</p>
+        <button class="nav-item active" data-page="map">
+          <svg class="icon"><use href="#i-map"></use></svg>
+          <span>海洋生态地图</span>
+          <span class="nav-index">01</span>
+        </button>
+        <button class="nav-item" data-page="risk">
+          <svg class="icon"><use href="#i-risk"></use></svg>
+          <span>污染风险预警</span>
+          <span class="nav-count warning" id="risk-nav-count">3</span>
+        </button>
+        <p class="nav-label nav-label-spaced">协同处置</p>
+        <button class="nav-item" data-page="report">
+          <svg class="icon"><use href="#i-report"></use></svg>
+          <span>海洋问题上报</span>
+        </button>
+        <button class="nav-item" data-page="events">
+          <svg class="icon"><use href="#i-events"></use></svg>
+          <span>事件处理闭环</span>
+          <span class="nav-count" id="event-nav-count">7</span>
+        </button>
+        <button class="nav-item" data-page="analytics">
+          <svg class="icon"><use href="#i-analytics"></use></svg>
+          <span>统计分析看板</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="system-status">
+          <div class="status-title">
+            <span class="live-dot"></span>
+            <span>数据服务正常</span>
+            <strong>99.98%</strong>
+          </div>
+          <div class="status-track"><i></i></div>
+          <div class="status-meta">
+            <span>42 个监测站</span>
+            <span id="last-sync">刚刚同步</span>
+          </div>
+        </div>
+        <div class="sidebar-user">
+          <div class="avatar">海</div>
+          <div>
+            <strong>海洋生态管理员</strong>
+            <span>辽东湾巡护中心</span>
+          </div>
+          <button class="icon-button tiny" aria-label="更多账户操作">
+            <svg class="icon"><use href="#i-more"></use></svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-shell">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button mobile-menu" id="mobile-menu" aria-label="打开导航">
+            <svg class="icon"><use href="#i-menu"></use></svg>
+          </button>
+          <div class="breadcrumb">
+            <span>辽东湾</span>
+            <svg class="icon"><use href="#i-chevron-right"></use></svg>
+            <strong id="breadcrumb-current">海洋生态地图</strong>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <button class="global-search" id="global-search">
+            <svg class="icon"><use href="#i-search"></use></svg>
+            <span>搜索区域、事件或监测站</span>
+            <kbd>Ctrl K</kbd>
+          </button>
+          <div class="data-freshness">
+            <span class="live-dot"></span>
+            <div><small>数据更新于</small><b id="header-time">14:32:08</b></div>
+          </div>
+          <button class="icon-button notification-button" id="notifications-button" aria-label="通知">
+            <svg class="icon"><use href="#i-bell"></use></svg>
+            <span class="notification-dot">3</span>
+          </button>
+          <div class="mode-chip" id="mode-chip">
+            <span></span>
+            演示数据
+          </div>
+        </div>
+      </header>
+
+      <main class="page-container">
+        <section class="page active" id="page-map" data-page="map">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow"><span></span> LIAODONG BAY · ECOLOGICAL SITUATION</div>
+              <h1>海洋生态地图 <span>实时态势</span></h1>
+              <p>融合多源海洋环境数据，洞察近岸生态变化与污染风险。</p>
+            </div>
+            <div class="heading-actions">
+              <button class="control-button">
+                <svg class="icon"><use href="#i-pin"></use></svg>
+                辽东湾全域
+                <svg class="icon chevron"><use href="#i-chevron-down"></use></svg>
+              </button>
+              <button class="control-button">
+                <svg class="icon"><use href="#i-clock"></use></svg>
+                近 24 小时
+                <svg class="icon chevron"><use href="#i-chevron-down"></use></svg>
+              </button>
+              <button class="primary-button" data-go="risk">
+                <svg class="icon"><use href="#i-risk"></use></svg>
+                查看风险预警
+              </button>
+            </div>
+          </div>
+
+          <div class="metric-grid map-metrics">
+            <article class="metric-card">
+              <div class="metric-icon cyan"><svg class="icon"><use href="#i-locate"></use></svg></div>
+              <div class="metric-main">
+                <span>在线监测站位</span>
+                <div><strong>42</strong><small>/ 43</small></div>
+              </div>
+              <div class="metric-side positive"><b>97.6%</b><span>在线率</span></div>
+              <div class="metric-spark">
+                <svg viewBox="0 0 110 35" preserveAspectRatio="none"><path d="M0 27C9 28 12 19 20 21s11 8 18 4 9-13 17-11 8 11 16 8 10-13 18-10 8 11 21 2"/></svg>
+              </div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-icon orange"><svg class="icon"><use href="#i-risk"></use></svg></div>
+              <div class="metric-main">
+                <span>活跃风险预警</span>
+                <div><strong id="active-alert-count">8</strong><small> 条</small></div>
+              </div>
+              <div class="metric-side danger"><b>+2</b><span>较昨日</span></div>
+              <div class="severity-mini"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="dim"></i><i class="dim"></i></div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-icon blue"><svg class="icon"><use href="#i-events"></use></svg></div>
+              <div class="metric-main">
+                <span>今日待处置事件</span>
+                <div><strong id="pending-event-count">7</strong><small> 件</small></div>
+              </div>
+              <div class="metric-side neutral"><b>5h 24m</b><span>平均响应</span></div>
+              <div class="avatar-stack">
+                <i>巡</i><i>生</i><i>执</i><b>+4</b>
+              </div>
+            </article>
+            <article class="metric-card">
+              <div class="metric-icon green"><svg class="icon"><use href="#i-check-circle"></use></svg></div>
+              <div class="metric-main">
+                <span>本周闭环完成率</span>
+                <div><strong>92.4</strong><small>%</small></div>
+              </div>
+              <div class="metric-side positive"><b>+5.8%</b><span>环比提升</span></div>
+              <div class="ring-mini" style="--value:92"><span>92</span></div>
+            </article>
+          </div>
+
+          <div class="map-layout">
+            <div class="map-panel panel">
+              <div class="map-toolbar">
+                <div class="map-toolbar-left">
+                  <button class="tool-button active" data-map-mode="overview"><span class="tool-dot"></span>综合态势</button>
+                  <button class="tool-button" data-map-mode="quality">水质监测</button>
+                  <button class="tool-button" data-map-mode="events">事件分布</button>
+                </div>
+                <div class="map-toolbar-right">
+                  <button class="icon-button" id="refresh-map" aria-label="刷新地图数据"><svg class="icon"><use href="#i-refresh"></use></svg></button>
+                  <button class="icon-button" id="map-fullscreen" aria-label="全屏地图"><svg class="icon"><use href="#i-expand"></use></svg></button>
+                </div>
+              </div>
+
+              <div class="ocean-map" id="ocean-map">
+                <div class="leaflet-map" id="leaflet-map" aria-label="辽东湾在线生态地图"></div>
+                <div class="map-source-badge">
+                  <span id="map-source-status"><i></i>正在连接地图</span>
+                  <span class="simulation-badge" id="map-simulation-badge" hidden>模拟点位</span>
+                </div>
+                <div class="map-fallback-note" id="map-fallback" hidden>在线底图暂不可用，已切换为平台示意地图。</div>
+
+                <svg class="map-canvas map-fallback-canvas" viewBox="0 0 1000 590" role="img" aria-label="辽东湾海洋生态态势示意地图">
+                  <defs>
+                    <linearGradient id="oceanGradient" x1="0" y1="0" x2="0.8" y2="1">
+                      <stop offset="0" stop-color="#0d3348"/>
+                      <stop offset="0.5" stop-color="#0a2b3d"/>
+                      <stop offset="1" stop-color="#061e2d"/>
+                    </linearGradient>
+                    <linearGradient id="landGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0" stop-color="#133a3b"/>
+                      <stop offset="1" stop-color="#0b2c30"/>
+                    </linearGradient>
+                    <radialGradient id="riskHot">
+                      <stop offset="0" stop-color="#ff774d" stop-opacity=".6"/>
+                      <stop offset=".45" stop-color="#ff774d" stop-opacity=".22"/>
+                      <stop offset="1" stop-color="#ff774d" stop-opacity="0"/>
+                    </radialGradient>
+                    <radialGradient id="riskWarm">
+                      <stop offset="0" stop-color="#f6b94b" stop-opacity=".45"/>
+                      <stop offset="1" stop-color="#f6b94b" stop-opacity="0"/>
+                    </radialGradient>
+                    <pattern id="gridPattern" width="42" height="42" patternUnits="userSpaceOnUse">
+                      <path d="M42 0H0V42" fill="none" stroke="#78b5c3" stroke-opacity=".055" stroke-width="1"/>
+                    </pattern>
+                    <pattern id="aquaPattern" width="18" height="18" patternUnits="userSpaceOnUse">
+                      <path d="M0 0h18v18H0z" fill="#1fa8a0" fill-opacity=".08"/>
+                      <circle cx="9" cy="9" r="1.3" fill="#36c4b7" fill-opacity=".48"/>
+                    </pattern>
+                    <filter id="softGlow" x="-100%" y="-100%" width="300%" height="300%">
+                      <feGaussianBlur stdDeviation="5" result="blur"/>
+                      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                    </filter>
+                  </defs>
+
+                  <rect width="1000" height="590" fill="url(#oceanGradient)"/>
+                  <rect width="1000" height="590" fill="url(#gridPattern)"/>
+                  <path class="sea-depth-line" d="M-30 158C104 123 189 172 280 196s177 10 254 53 142 91 251 81 177-69 250-56"/>
+                  <path class="sea-depth-line subtle" d="M-10 296c100-31 188 19 276 25s155-29 248 13 178 113 278 77 152-76 221-63"/>
+                  <path class="sea-depth-line subtle" d="M67 450c111-37 172 23 269 15s169-50 252-8 157 78 267 34 115-47 171-42"/>
+                  <path class="current-line" d="M714 558c-8-68 25-108 83-133 60-26 104-72 95-130"/>
+                  <path class="current-line current-2" d="M537 575c-7-48 6-85 37-119 31-35 37-80 24-121"/>
+
+                  <g class="land-layer">
+                    <path class="land-mass" d="M0 0H1000V91c-47 12-81 29-125 33-54 5-86-15-128 4-42 19-54 58-109 69-57 11-94-7-145 10-73 25-99 72-180 63-75-8-95-49-169-41-52 6-79 31-144 26Z"/>
+                    <path class="coast-line" d="M0 218c65 5 92-20 144-26 74-8 94 33 169 41 81 9 107-38 180-63 51-17 88 1 145-10 55-11 67-50 109-69 42-19 74 1 128-4 44-4 78-21 125-33"/>
+                    <path class="land-inner-line" d="M16 93c104 10 189-7 274 7s143 29 232 9 151-49 220-30 130 9 233 2M42 150c94 4 147-19 225-10s133 21 200 5 127-36 191-28 158 13 310 4"/>
+                    <path class="island" d="M756 66c21-15 62-10 75 7s-6 34-34 34-61-26-41-41ZM877 126c11-7 29-1 31 10s-14 20-27 13-14-17-4-23Z"/>
+                    <g class="city-nodes">
+                      <circle cx="332" cy="70" r="3"/><text x="343" y="74">营口</text>
+                      <circle cx="550" cy="89" r="3"/><text x="561" y="93">盘锦</text>
+                      <circle cx="792" cy="83" r="3"/><text x="803" y="87">锦州</text>
+                      <circle cx="895" cy="104" r="3"/><text x="906" y="108">葫芦岛</text>
+                    </g>
+                  </g>
+
+                  <g class="map-zone protection-zone">
+                    <path d="M603 191l92-29 74 58-18 78-101 21-67-65Z"/>
+                    <text x="647" y="245">斑海豹</text>
+                    <text x="647" y="264">国家级自然保护区</text>
+                  </g>
+                  <g class="map-zone aquaculture-zone">
+                    <path d="M213 278l89-48 111 43-16 95-105 32-93-52Z"/>
+                    <text x="267" y="330">辽东湾水产</text>
+                    <text x="267" y="348">养殖示范区</text>
+                  </g>
+                  <g class="map-zone port-zone">
+                    <path d="M742 330l95-22 68 54-32 83-103 12-61-58Z"/>
+                    <text x="784" y="382">营口港</text>
+                    <text x="784" y="400">航运监管区</text>
+                  </g>
+
+                  <g class="risk-layer" data-layer="risk">
+                    <circle class="risk-pulse" cx="772" cy="333" r="115" fill="url(#riskHot)"/>
+                    <circle class="risk-pulse warm" cx="381" cy="311" r="76" fill="url(#riskWarm)"/>
+                    <circle class="risk-pulse secondary" cx="633" cy="233" r="58" fill="url(#riskWarm)"/>
+                  </g>
+
+                  <g class="shipping-layer" data-layer="port">
+                    <path class="shipping-route" d="M911 500c-76-42-103-74-132-125-18-32-25-58-21-94"/>
+                    <path class="shipping-route secondary" d="M808 390c32-53 59-91 95-123"/>
+                    <g class="ship" transform="translate(800 365)">
+                      <path d="M-12 6h24l-4 8H-8Z"/><rect x="-5" y="-5" width="10" height="11" rx="1"/>
+                    </g>
+                    <g class="ship small" transform="translate(870 448)">
+                      <path d="M-9 5h18l-3 6h-12Z"/><rect x="-3" y="-3" width="7" height="8" rx="1"/>
+                    </g>
+                  </g>
+
+                  <g class="stations-layer" data-layer="stations">
+                    <g class="station-marker" transform="translate(284 252)" data-station="S03">
+                      <circle class="station-halo" r="14"/><circle class="station-core" r="6"/><circle class="station-center" r="2"/>
+                      <g class="station-label" transform="translate(14 -13)"><rect width="74" height="25" rx="5"/><text x="9" y="16">S03 · 18.6℃</text></g>
+                    </g>
+                    <g class="station-marker" transform="translate(402 223)" data-station="S07">
+                      <circle class="station-halo" r="14"/><circle class="station-core" r="6"/><circle class="station-center" r="2"/>
+                    </g>
+                    <g class="station-marker warning" transform="translate(546 349)" data-station="S11">
+                      <circle class="station-halo" r="17"/><circle class="station-core" r="7"/><circle class="station-center" r="2"/>
+                      <g class="station-label warning" transform="translate(-84 -39)"><rect width="78" height="25" rx="5"/><text x="9" y="16">S11 · 异常</text></g>
+                    </g>
+                    <g class="station-marker" transform="translate(678 297)" data-station="S15">
+                      <circle class="station-halo" r="14"/><circle class="station-core" r="6"/><circle class="station-center" r="2"/>
+                    </g>
+                    <g class="station-marker alert" transform="translate(782 413)" data-station="S21">
+                      <circle class="station-halo" r="19"/><circle class="station-core" r="8"/><circle class="station-center" r="2"/>
+                      <g class="station-label alert" transform="translate(-104 -34)"><rect width="87" height="25" rx="5"/><text x="9" y="16">S21 · 风险 86</text></g>
+                    </g>
+                    <g class="station-marker" transform="translate(874 324)" data-station="S24">
+                      <circle class="station-halo" r="14"/><circle class="station-core" r="6"/><circle class="station-center" r="2"/>
+                    </g>
+                    <g class="station-marker" transform="translate(617 461)" data-station="S30">
+                      <circle class="station-halo" r="14"/><circle class="station-core" r="6"/><circle class="station-center" r="2"/>
+                    </g>
+                    <g class="station-marker" transform="translate(470 489)" data-station="S34">
+                      <circle class="station-halo" r="14"/><circle class="station-core" r="6"/><circle class="station-center" r="2"/>
+                    </g>
+                    <g class="station-marker" transform="translate(334 430)" data-station="S38">
+                      <circle class="station-halo" r="14"/><circle class="station-core" r="6"/><circle class="station-center" r="2"/>
+                    </g>
+                  </g>
+
+                  <g class="events-layer" data-layer="events">
+                    <g class="event-marker oil" transform="translate(744 338)">
+                      <circle r="20"/><path d="M-5-6c3 6 7 7 7 11a7 7 0 0 1-14 0c0-5 6-5 7-11Z"/>
+                      <g class="event-label" transform="translate(-45 30)"><rect width="90" height="25" rx="5"/><text x="10" y="16">油污 · 处理中</text></g>
+                    </g>
+                    <g class="event-marker trash" transform="translate(523 411)">
+                      <circle r="17"/><path d="M-5-7h10M-3-7l1-3h4l1 3M-4-4l1 12h6l1-12"/>
+                    </g>
+                    <g class="event-marker abnormal" transform="translate(635 221)">
+                      <circle r="17"/><path d="M0-8v9M0 5v.5"/>
+                    </g>
+                  </g>
+                </svg>
+
+                <div class="map-compass">
+                  <span>N</span>
+                  <svg viewBox="0 0 36 36"><path d="m18 5 6 22-6-4-6 4Z"/></svg>
+                </div>
+                <div class="map-scale"><span>0</span><i></i><span>20 km</span></div>
+
+                <div class="map-layer-panel panel-glass" id="layer-panel">
+                  <button class="layer-panel-head" id="layer-toggle">
+                    <svg class="icon"><use href="#i-layers"></use></svg>
+                    <span>图层管理</span>
+                    <svg class="icon layer-arrow"><use href="#i-chevron-down"></use></svg>
+                  </button>
+                  <div class="layer-list">
+                    <label><input type="checkbox" data-layer-toggle="stations" checked><i class="legend-dot station"></i>环境监测站<span id="station-layer-count">14</span></label>
+                    <label><input type="checkbox" data-layer-toggle="events" checked><i class="legend-dot event"></i>生态问题<span id="issue-layer-count">12</span></label>
+                    <label><input type="checkbox" data-layer-toggle="risk" checked><i class="legend-dot risk"></i>风险热区<span id="risk-layer-count">6</span></label>
+                    <label><input type="checkbox" data-layer-toggle="port" checked><i class="legend-dot port"></i>港口区域<span id="port-layer-count">6</span></label>
+                    <label><input type="checkbox" data-layer-toggle="zones" checked><i class="legend-dot zone"></i>保护区/养殖区<span id="zone-layer-count">7</span></label>
+                  </div>
+                </div>
+
+                <div class="map-legend panel-glass">
+                  <span><i class="legend-dot risk"></i>高风险</span>
+                  <span><i class="legend-dot warning"></i>中风险</span>
+                  <span><i class="legend-dot station"></i>正常</span>
+                </div>
+
+                <div class="map-data-float panel-glass">
+                  <div class="float-head"><span>重点监控区 · S21</span><b class="risk-text">高风险</b></div>
+                  <div class="float-values">
+                    <div><small>溶解氧</small><b>4.1<span>mg/L</span></b><em class="down">↓ 18%</em></div>
+                    <div><small>水温</small><b>22.8<span>℃</span></b><em>→ 0.2</em></div>
+                    <div><small>盐度</small><b>28.4<span>‰</span></b><em class="down">↓ 4%</em></div>
+                  </div>
+                  <div class="float-footer">
+                    <span><i class="live-dot"></i>数据正常回传</span>
+                    <button data-station-open="S21">查看详情 <svg class="icon"><use href="#i-chevron-right"></use></svg></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <aside class="map-insight panel">
+              <div class="panel-heading">
+                <div>
+                  <h2>风险态势</h2>
+                  <p>基于多源指标实时研判</p>
+                </div>
+                <button class="text-button" data-go="risk">查看全部</button>
+              </div>
+              <div class="risk-overview">
+                <div class="risk-score-gauge">
+                  <svg viewBox="0 0 180 105" aria-label="区域综合风险评分 68">
+                    <defs><linearGradient id="gaugeGradient" x1="0" x2="1"><stop stop-color="#1cc8b6"/><stop offset=".55" stop-color="#f2bd57"/><stop offset="1" stop-color="#ff6b4a"/></linearGradient></defs>
+                    <path class="gauge-bg" d="M20 91A70 70 0 0 1 160 91"/>
+                    <path class="gauge-value" d="M20 91A70 70 0 0 1 160 91" pathLength="100"/>
+                    <circle class="gauge-end" cx="127" cy="30.5" r="4"/>
+                  </svg>
+                  <div class="gauge-label"><strong>68</strong><span>综合风险指数</span><small>较昨日 ↑ 6</small></div>
+                </div>
+                <div class="risk-levels">
+                  <div><i class="level high"></i><span>高风险</span><b>2</b></div>
+                  <div><i class="level medium"></i><span>中风险</span><b>6</b></div>
+                  <div><i class="level low"></i><span>低风险</span><b>34</b></div>
+                </div>
+              </div>
+              <div class="section-divider"><span>重点预警</span><b>按风险指数排序</b></div>
+              <div class="alert-mini-list" id="map-alert-list"></div>
+              <div class="quick-report-card">
+                <div class="quick-report-icon"><svg class="icon"><use href="#i-camera"></use></svg></div>
+                <div><b>发现生态问题？</b><span>拍照定位，快速上报现场情况</span></div>
+                <button data-go="report">立即上报</button>
+              </div>
+            </aside>
+          </div>
+
+          <div class="bottom-data-strip panel">
+            <div class="bottom-strip-heading">
+              <span><i class="live-dot"></i>实时环境数据</span>
+              <small>最近更新 14:32</small>
+            </div>
+            <div class="environment-stat">
+              <div class="env-icon sea"><svg class="icon"><use href="#i-thermo"></use></svg></div>
+              <div><span>平均海温</span><b>18.6 <small>℃</small></b></div>
+              <em class="positive">↑ 0.4℃</em>
+            </div>
+            <div class="environment-stat">
+              <div class="env-icon salt"><svg class="icon"><use href="#i-droplet"></use></svg></div>
+              <div><span>平均盐度</span><b>29.8 <small>‰</small></b></div>
+              <em>→ 0.1‰</em>
+            </div>
+            <div class="environment-stat">
+              <div class="env-icon oxygen"><svg class="icon"><use href="#i-activity"></use></svg></div>
+              <div><span>平均溶解氧</span><b>6.8 <small>mg/L</small></b></div>
+              <em class="negative">↓ 0.3</em>
+            </div>
+            <div class="environment-stat">
+              <div class="env-icon chl"><svg class="icon"><use href="#i-wave"></use></svg></div>
+              <div><span>叶绿素 a</span><b>3.2 <small>μg/L</small></b></div>
+              <em class="danger">偏高 12%</em>
+            </div>
+            <div class="data-quality">
+              <span>数据质量</span>
+              <b>优</b>
+              <small>多源校验通过</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="page-risk" data-page="risk">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow"><span></span> RISK INTELLIGENCE · EARLY WARNING</div>
+              <h1>污染风险预警 <span>智能研判</span></h1>
+              <p>融合异常程度、变化趋势与事件密度，动态量化区域污染风险。</p>
+            </div>
+            <div class="heading-actions">
+              <button class="control-button"><svg class="icon"><use href="#i-calendar"></use></svg>2026年11月11日<svg class="icon chevron"><use href="#i-chevron-down"></use></svg></button>
+              <button class="control-button" id="risk-refresh"><svg class="icon"><use href="#i-refresh"></use></svg>重新研判</button>
+            </div>
+          </div>
+
+          <div class="risk-banner">
+            <div class="risk-banner-symbol"><svg class="icon"><use href="#i-risk"></use></svg><i></i></div>
+            <div class="risk-banner-copy">
+              <span>当前区域风险研判</span>
+              <h2>存在 <em>2 处高风险区域</em>，建议优先处置营口港邻近海域污染事件</h2>
+              <p>模型综合分析 42 个监测站环境数据、近 30 日变化趋势及周边 12 起历史事件。</p>
+            </div>
+            <div class="risk-banner-score">
+              <span>区域风险指数</span><strong>68<small>/100</small></strong>
+              <i><b style="width:68%"></b></i>
+            </div>
+            <button class="primary-button danger-button" data-go="events">进入事件处置<svg class="icon"><use href="#i-chevron-right"></use></svg></button>
+          </div>
+
+          <div class="risk-dashboard-grid">
+            <div class="risk-main-column">
+              <article class="panel chart-panel">
+                <div class="panel-heading">
+                  <div><h2>近 14 日区域风险趋势</h2><p>风险指数与预警事件联动变化</p></div>
+                  <div class="chart-legend"><span><i class="cyan"></i>风险指数</span><span><i class="orange"></i>预警数量</span></div>
+                </div>
+                <div class="risk-trend-chart" id="risk-trend-chart"></div>
+              </article>
+
+              <article class="panel alert-center">
+                <div class="panel-heading">
+                  <div><h2>实时预警中心</h2><p>共发现 8 条风险信息，3 条需立即关注</p></div>
+                  <div class="segmented compact" id="alert-filter">
+                    <button class="active" data-alert-filter="all">全部</button>
+                    <button data-alert-filter="high">高风险</button>
+                    <button data-alert-filter="medium">中风险</button>
+                  </div>
+                </div>
+                <div class="alert-table-wrap">
+                  <table class="data-table alert-table">
+                    <thead><tr><th>风险类型 / 区域</th><th>关键指标</th><th>风险评分</th><th>变化趋势</th><th>发现时间</th><th>状态</th><th></th></tr></thead>
+                    <tbody id="alert-table-body"></tbody>
+                  </table>
+                </div>
+              </article>
+            </div>
+
+            <div class="risk-side-column">
+              <article class="panel score-model-panel">
+                <div class="panel-heading">
+                  <div><h2>风险评估模型</h2><p>动态权重 · 多因子融合</p></div>
+                  <span class="model-version">V2.4</span>
+                </div>
+                <div class="score-orbit">
+                  <div class="score-center"><span>当前均值</span><strong>51.8</strong><small>中风险</small></div>
+                  <div class="orbit-ring r1"></div><div class="orbit-ring r2"></div>
+                  <span class="orbit-node n1">环境异常<b>45%</b></span>
+                  <span class="orbit-node n2">变化趋势<b>30%</b></span>
+                  <span class="orbit-node n3">事件密度<b>25%</b></span>
+                </div>
+                <div class="model-factors">
+                  <div><span>指标偏离度</span><div class="factor-bar"><i style="width:78%"></i></div><b>78</b></div>
+                  <div><span>趋势突变性</span><div class="factor-bar warm"><i style="width:62%"></i></div><b>62</b></div>
+                  <div><span>周边事件密度</span><div class="factor-bar danger"><i style="width:84%"></i></div><b>84</b></div>
+                </div>
+                <p class="model-note"><svg class="icon"><use href="#i-shield"></use></svg>评分结果仅作为处置优先级辅助依据</p>
+              </article>
+
+              <article class="panel area-ranking">
+                <div class="panel-heading"><div><h2>海域风险排行</h2><p>按综合风险指数排序</p></div></div>
+                <div class="ranking-list">
+                  <div class="ranking-item high"><span class="rank">01</span><div><b>营口港近岸</b><small>油污风险 · S21</small></div><em>86</em><div class="rank-track"><i style="width:86%"></i></div></div>
+                  <div class="ranking-item high"><span class="rank">02</span><div><b>双台子河口</b><small>水质异常 · S11</small></div><em>79</em><div class="rank-track"><i style="width:79%"></i></div></div>
+                  <div class="ranking-item medium"><span class="rank">03</span><div><b>辽东湾保护区</b><small>赤潮风险 · S15</small></div><em>64</em><div class="rank-track"><i style="width:64%"></i></div></div>
+                  <div class="ranking-item medium"><span class="rank">04</span><div><b>鲅鱼圈养殖区</b><small>溶解氧偏低 · S07</small></div><em>57</em><div class="rank-track"><i style="width:57%"></i></div></div>
+                  <div class="ranking-item low"><span class="rank">05</span><div><b>锦州南部海域</b><small>指标波动 · S24</small></div><em>41</em><div class="rank-track"><i style="width:41%"></i></div></div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="page" id="page-report" data-page="report">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow"><span></span> ECOLOGICAL ISSUE · PUBLIC REPORTING</div>
+              <h1>海洋问题上报 <span>全民共护</span></h1>
+              <p>用一张照片和一个定位，让每一处生态问题得到及时响应。</p>
+            </div>
+            <div class="heading-actions">
+              <div class="public-badge"><svg class="icon"><use href="#i-shield"></use></svg>公众上报通道</div>
+              <button class="control-button" data-go="events"><svg class="icon"><use href="#i-events"></use></svg>查看我的上报</button>
+            </div>
+          </div>
+
+          <div class="report-layout">
+            <div class="report-main">
+              <div class="report-hero">
+                <div>
+                  <span class="report-kicker">发现 · 记录 · 守护</span>
+                  <h2>共同守护辽东湾的每一片蔚蓝</h2>
+                  <p>您的每一条信息，都将成为海洋生态保护的重要线索。平台承诺 2 小时内完成初审。</p>
+                </div>
+                <div class="report-hero-graphic">
+                  <div class="sonar-ring r1"></div><div class="sonar-ring r2"></div><div class="sonar-ring r3"></div>
+                  <svg class="icon"><use href="#i-camera"></use></svg>
+                </div>
+              </div>
+
+              <form class="report-form panel" id="report-form" novalidate>
+                <div class="form-step-heading"><span>01</span><div><h2>现场信息</h2><p>请提供清晰照片和准确位置，便于快速核实</p></div><em>必填</em></div>
+                <div class="upload-zone" id="upload-zone">
+                  <input type="file" id="report-images" accept="image/*" multiple hidden>
+                  <div class="upload-icon"><svg class="icon"><use href="#i-upload"></use></svg></div>
+                  <div><b>拖拽图片到这里，或点击上传</b><p>支持 JPG、PNG，最多上传 6 张，单张不超过 10MB</p></div>
+                  <button type="button" class="secondary-button" id="choose-images">选择图片</button>
+                  <small>拍摄建议：包含问题主体及周边参照物</small>
+                </div>
+                <div class="image-preview-list" id="image-preview-list"></div>
+
+                <div class="form-grid">
+                  <label class="field">
+                    <span>问题类型 <em>*</em></span>
+                    <div class="select-wrap"><select id="report-type" required><option value="">请选择问题类型</option><option value="oil">油污污染</option><option value="trash">海洋垃圾</option><option value="water">水质异常</option><option value="redtide">赤潮/藻类异常</option><option value="wildlife">野生动物异常</option><option value="other">其他问题</option></select><svg class="icon"><use href="#i-chevron-down"></use></svg></div>
+                  </label>
+                  <label class="field">
+                    <span>紧急程度 <em>*</em></span>
+                    <div class="severity-options" id="severity-options">
+                      <button type="button" data-value="low"><i></i>一般</button>
+                      <button type="button" class="active" data-value="medium"><i></i>紧急</button>
+                      <button type="button" data-value="high"><i></i>危急</button>
+                    </div>
+                  </label>
+                </div>
+
+                <label class="field">
+                  <span>发现位置 <em>*</em></span>
+                  <div class="input-with-action"><svg class="icon"><use href="#i-pin"></use></svg><input id="report-location" placeholder="请输入详细位置，或使用定位获取" required><button type="button" id="locate-button"><svg class="icon"><use href="#i-locate"></use></svg>获取定位</button></div>
+                  <small class="field-hint">建议填写：区县 / 岸段 / 邻近地标，例如“鲅鱼圈区月亮湖公园东侧 300 米海岸”</small>
+                </label>
+                <label class="field">
+                  <span>问题描述 <em>*</em></span>
+                  <textarea id="report-description" rows="4" maxlength="500" placeholder="请描述问题范围、颜色、气味及现场情况，以便处置人员提前准备" required></textarea>
+                  <small class="char-count"><span id="description-count">0</span>/500</small>
+                </label>
+
+                <div class="form-step-heading secondary-step"><span>02</span><div><h2>上报人信息</h2><p>用于接收处理进度和结果反馈</p></div><em>选填</em></div>
+                <div class="form-grid three">
+                  <label class="field"><span>上报人身份</span><div class="select-wrap"><select id="reporter-role"><option value="public">社会公众</option><option value="patrol">巡护人员</option><option value="fisherman">渔民/养殖户</option></select><svg class="icon"><use href="#i-chevron-down"></use></svg></div></label>
+                  <label class="field"><span>姓名</span><input id="reporter-name" placeholder="请输入姓名"></label>
+                  <label class="field"><span>联系电话</span><input id="reporter-phone" inputmode="tel" placeholder="用于接收处理进度"></label>
+                </div>
+                <label class="privacy-option"><input type="checkbox" id="report-anonymous"><i><svg class="icon"><use href="#i-check"></use></svg></i><span><b>匿名上报</b><small>隐藏个人信息，不影响问题受理与处理反馈</small></span></label>
+                <div class="form-submit-row">
+                  <p><svg class="icon"><use href="#i-shield"></use></svg>平台将对上报人信息严格保密</p>
+                  <button class="primary-button large" type="submit" id="submit-report"><svg class="icon"><use href="#i-send"></use></svg>提交上报</button>
+                </div>
+              </form>
+            </div>
+
+            <aside class="report-aside">
+              <article class="panel process-card">
+                <div class="panel-heading"><div><h2>上报处理流程</h2><p>全程透明，进度可查</p></div></div>
+                <div class="process-steps">
+                  <div class="done"><i><svg class="icon"><use href="#i-send"></use></svg></i><div><b>信息提交</b><span>填写并提交现场线索</span></div></div>
+                  <div><i>2</i><div><b>平台审核</b><span>2 小时内完成初审</span></div></div>
+                  <div><i>3</i><div><b>任务分派</b><span>匹配属地处置部门</span></div></div>
+                  <div><i>4</i><div><b>现场处理</b><span>处置过程实时留痕</span></div></div>
+                  <div><i><svg class="icon"><use href="#i-check"></use></svg></i><div><b>结果反馈</b><span>处理结果闭环归档</span></div></div>
+                </div>
+              </article>
+              <article class="panel report-stats-card">
+                <div class="panel-heading"><div><h2>今日上报动态</h2><p>公众共同参与生态保护</p></div><span class="live-tag"><i></i>LIVE</span></div>
+                <div class="report-stat-numbers">
+                  <div><strong>18</strong><span>今日上报</span></div>
+                  <div><strong>16</strong><span>已受理</span></div>
+                  <div><strong>1.8h</strong><span>平均响应</span></div>
+                </div>
+                <div class="recent-report-list" id="recent-report-list"></div>
+              </article>
+              <article class="eco-tip">
+                <svg class="icon"><use href="#i-wave"></use></svg>
+                <div><b>安全提示</b><p>遇到大面积油污、危险化学品泄漏等情况，请优先远离现场并拨打 12345，不要直接接触污染物。</p></div>
+              </article>
+            </aside>
+          </div>
+        </section>
+
+        <section class="page" id="page-events" data-page="events">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow"><span></span> RESPONSE WORKFLOW · CLOSED LOOP</div>
+              <h1>事件处理闭环 <span>协同处置</span></h1>
+              <p>统一受理、智能分派、全程留痕，让每一个问题都有结果。</p>
+            </div>
+            <div class="heading-actions">
+              <button class="control-button"><svg class="icon"><use href="#i-calendar"></use></svg>近 30 日<svg class="icon chevron"><use href="#i-chevron-down"></use></svg></button>
+              <button class="control-button" id="export-events"><svg class="icon"><use href="#i-download"></use></svg>导出台账</button>
+              <button class="primary-button" data-go="report"><svg class="icon"><use href="#i-plus"></use></svg>新建事件</button>
+            </div>
+          </div>
+
+          <div class="workflow-summary">
+            <button class="workflow-stat active" data-status-filter="all"><span class="wf-icon all"><svg class="icon"><use href="#i-events"></use></svg></span><div><small>全部事件</small><strong id="wf-all">24</strong></div><em>本周期</em></button>
+            <button class="workflow-stat" data-status-filter="pending_review"><span class="wf-icon review"><svg class="icon"><use href="#i-eye"></use></svg></span><div><small>待审核</small><strong id="wf-review">4</strong></div><em class="attention">需处理</em></button>
+            <button class="workflow-stat" data-status-filter="pending_dispatch"><span class="wf-icon dispatch"><svg class="icon"><use href="#i-send"></use></svg></span><div><small>待分派</small><strong id="wf-dispatch">3</strong></div><em class="attention">需处理</em></button>
+            <button class="workflow-stat" data-status-filter="processing"><span class="wf-icon processing"><svg class="icon"><use href="#i-clock"></use></svg></span><div><small>处理中</small><strong id="wf-processing">6</strong></div><em>平均 4.2h</em></button>
+            <button class="workflow-stat" data-status-filter="pending_verification"><span class="wf-icon verify"><svg class="icon"><use href="#i-shield"></use></svg></span><div><small>待复核</small><strong id="wf-verify">3</strong></div><em>待确认</em></button>
+            <button class="workflow-stat" data-status-filter="archived"><span class="wf-icon archived"><svg class="icon"><use href="#i-check-circle"></use></svg></span><div><small>已归档</small><strong id="wf-archived">8</strong></div><em class="positive-text">闭环率 92.4%</em></button>
+          </div>
+
+          <div class="event-workspace">
+            <article class="panel event-list-panel">
+              <div class="event-list-toolbar">
+                <div class="inline-search"><svg class="icon"><use href="#i-search"></use></svg><input id="event-search" placeholder="搜索事件编号、类型或位置"></div>
+                <button class="icon-button"><svg class="icon"><use href="#i-filter"></use></svg></button>
+              </div>
+              <div class="event-filter-chips" id="event-filter-chips">
+                <button class="active" data-status-filter="all">全部</button>
+                <button data-status-filter="pending_review">待审核</button>
+                <button data-status-filter="processing">处理中</button>
+                <button data-status-filter="pending_verification">待复核</button>
+                <button data-status-filter="archived">已归档</button>
+              </div>
+              <div class="event-list-head"><span>事件信息</span><span>状态 / 时效</span></div>
+              <div class="event-list" id="event-list"></div>
+            </article>
+
+            <article class="panel event-detail-panel" id="event-detail">
+              <div class="event-detail-empty"><svg class="icon"><use href="#i-events"></use></svg><h3>选择一个事件查看处置详情</h3></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="page" id="page-analytics" data-page="analytics">
+          <div class="page-heading">
+            <div>
+              <div class="eyebrow"><span></span> DATA INSIGHT · DECISION SUPPORT</div>
+              <h1>统计分析看板 <span>治理洞察</span></h1>
+              <p>从风险趋势到处置效能，用数据驱动生态巡护科学决策。</p>
+            </div>
+            <div class="heading-actions">
+              <button class="control-button"><svg class="icon"><use href="#i-calendar"></use></svg>2026.10.13 - 11.11<svg class="icon chevron"><use href="#i-chevron-down"></use></svg></button>
+              <button class="control-button" id="export-analytics"><svg class="icon"><use href="#i-download"></use></svg>导出分析报告</button>
+            </div>
+          </div>
+
+          <div class="analytics-kpis">
+            <article class="analytics-kpi main-kpi">
+              <div class="kpi-head"><span>事件闭环率</span><i class="positive">↑ 5.8%</i></div>
+              <div class="kpi-main"><strong>92.4</strong><span>%</span></div>
+              <div class="kpi-progress"><i style="width:92.4%"></i></div>
+              <small>目标值 90% · 已达标</small>
+            </article>
+            <article class="analytics-kpi">
+              <div class="kpi-head"><span>累计受理事件</span><i>本周期</i></div>
+              <div class="kpi-main"><strong>186</strong><span>件</span></div>
+              <div class="kpi-trend-chart"><svg viewBox="0 0 130 35"><path d="M0 29c13-3 15-11 28-8s13 12 25 8 12-17 24-14 14 8 25 2 15-12 28-9"/></svg></div>
+              <small>较上周期 <b class="positive">+12.7%</b></small>
+            </article>
+            <article class="analytics-kpi">
+              <div class="kpi-head"><span>平均处置时长</span><i class="positive">↓ 1.2h</i></div>
+              <div class="kpi-main"><strong>6.8</strong><span>小时</span></div>
+              <div class="time-benchmark"><i style="width:68%"></i><b style="left:80%"></b></div>
+              <small>优于目标值 8 小时</small>
+            </article>
+            <article class="analytics-kpi">
+              <div class="kpi-head"><span>公众参与上报</span><i class="positive">↑ 21%</i></div>
+              <div class="kpi-main"><strong>68</strong><span>人次</span></div>
+              <div class="avatar-stack wide"><i>李</i><i>王</i><i>赵</i><i>陈</i><b>+64</b></div>
+              <small>占全部上报来源 36.6%</small>
+            </article>
+          </div>
+
+          <div class="analytics-grid">
+            <article class="panel issue-type-panel">
+              <div class="panel-heading"><div><h2>问题类型构成</h2><p>本周期 186 件已受理事件</p></div><button class="icon-button"><svg class="icon"><use href="#i-more"></use></svg></button></div>
+              <div class="donut-layout">
+                <div class="donut-chart" id="issue-donut"><div><strong>186</strong><span>事件总数</span></div></div>
+                <div class="donut-legend" id="issue-donut-legend"></div>
+              </div>
+            </article>
+
+            <article class="panel area-bar-panel">
+              <div class="panel-heading"><div><h2>区域事件分布</h2><p>按事件数量与闭环情况统计</p></div><div class="chart-legend"><span><i class="cyan"></i>已闭环</span><span><i class="muted"></i>处置中</span></div></div>
+              <div class="horizontal-bars" id="area-bars"></div>
+            </article>
+
+            <article class="panel efficiency-panel">
+              <div class="panel-heading"><div><h2>处置时效趋势</h2><p>事件平均响应与办结时长</p></div><div class="chart-legend"><span><i class="cyan"></i>响应时长</span><span><i class="orange"></i>办结时长</span></div></div>
+              <div class="efficiency-chart" id="efficiency-chart"></div>
+            </article>
+
+            <article class="panel risk-trend-panel">
+              <div class="panel-heading"><div><h2>风险趋势与等级</h2><p>近 6 周风险指数变化</p></div><span class="trend-badge">整体下降 8.6%</span></div>
+              <div class="risk-week-chart" id="risk-week-chart"></div>
+              <div class="week-legend"><span><i class="high"></i>高风险 4</span><span><i class="medium"></i>中风险 17</span><span><i class="low"></i>低风险 165</span></div>
+            </article>
+
+            <article class="panel insight-panel">
+              <div class="insight-title"><div class="insight-icon"><svg class="icon"><use href="#i-activity"></use></svg></div><div><span>AI 数据洞察</span><h2>营口港邻近海域需重点关注</h2></div></div>
+              <p>近 7 日该区域油污类事件较前周期增加 <b>42%</b>，溶解氧指标连续 3 日低于阈值。建议提高船舶巡查频次，并对 S21 站点周边 5 公里范围开展专项排查。</p>
+              <div class="insight-tags"><span>事件密度 ↑42%</span><span>溶解氧异常</span><span>建议优先级 P1</span></div>
+              <button class="text-button" data-go="risk">查看风险详情<svg class="icon"><use href="#i-chevron-right"></use></svg></button>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <nav class="mobile-bottom-nav" aria-label="移动端主导航">
+    <button class="active" data-page="map"><svg class="icon"><use href="#i-map"></use></svg><span>态势</span></button>
+    <button data-page="risk"><svg class="icon"><use href="#i-risk"></use></svg><span>预警</span></button>
+    <button class="mobile-report" data-page="report"><svg class="icon"><use href="#i-plus"></use></svg><span>上报</span></button>
+    <button data-page="events"><svg class="icon"><use href="#i-events"></use></svg><span>处置</span></button>
+    <button data-page="analytics"><svg class="icon"><use href="#i-analytics"></use></svg><span>统计</span></button>
+  </nav>
+
+  <div class="toast-stack" id="toast-stack" aria-live="polite"></div>
+  <div class="modal-root" id="modal-root"></div>
+  <div class="sidebar-scrim" id="sidebar-scrim"></div>
+  <script src="./vendor/leaflet/leaflet.js"></script>
+  <script src="./assets/config.js"></script>
+  <script src="./assets/app.js"></script>
+</body>
+</html>
